@@ -26,13 +26,13 @@ type Game struct{}
 
 func (g *Game) Update() error {
 	// Gravity
-	spaceCowboyY += 1
+	spaceCowboyY += 0.5
 	if spaceCowboyY > 200 {
 		spaceCowboyY = 200
 	}
 
 	if g.isKeyJustPressed() {
-		spaceCowboyY -= 15
+		spaceCowboyY -= 2
 	}
 
 	return nil
@@ -50,6 +50,9 @@ func (g *Game) isKeyJustPressed() bool {
 		return true
 	}
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
+		return true
+	}
+	if inpututil.KeyPressDuration(ebiten.KeySpace) > 10 {
 		return true
 	}
 	touchIDs = inpututil.AppendJustPressedTouchIDs(touchIDs)
