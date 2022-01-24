@@ -27,8 +27,15 @@ type Game struct{}
 func (g *Game) Update() error {
 	// Gravity
 	spaceCowboyY += 0.5
+
+	// Don't let character go past the bottom of screen
 	if spaceCowboyY > 200 {
 		spaceCowboyY = 200
+	}
+
+	// Don't let character go past the top of screen
+	if spaceCowboyY < 0 {
+		spaceCowboyY = 0
 	}
 
 	if g.isKeyJustPressed() {
